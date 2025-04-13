@@ -1,0 +1,28 @@
+Table movie_theater {
+  id UUID [primary key]
+  name VARCHAR(64)
+  description text
+  type VARCHAR(16)
+  capacity SMALLINT
+  disabled_access BOOLEAN
+}
+
+TABLE movie {
+  id UUID [primary key]
+  name VARCHAR(64)
+  director VARCHAR(64)
+  release_date date
+  duration INTERVAL
+}
+
+Table movie_screening{
+  id UUID [primary key]
+  start_screening TIMESTAMPTZ
+  end_screening TIMESTAMPTZ
+  movie_id UUID
+  movie_theater_id UUID
+}
+
+
+Ref: movie_screening.movie_id > movie.id
+Ref: movie_screening.movie_theater_id > movie_theater.id
