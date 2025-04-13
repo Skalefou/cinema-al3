@@ -1,26 +1,26 @@
 version: '3.9'
 
 services:
-  postgres:
-    image: postgres:17.4
-    container_name: postgres_container
-    environment:
-      POSTGRES_USER_FILE: /run/secrets/postgres_user
-      POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password
-      POSTGRES_DB: cinema
-    secrets:
-      - postgres_user
-      - postgres_password
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
+    postgres:
+        image: postgres:17.4
+        container_name: postgres_container
+        environment:
+            POSTGRES_USER_FILE: /run/secrets/postgres_user
+            POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password
+            POSTGRES_DB: cinema
+        secrets:
+            - postgres_user
+            - postgres_password
+        ports:
+            - '5432:5432'
+        volumes:
+            - postgres_data:/var/lib/postgresql/data
 
 secrets:
-  postgres_user:
-    file: ./secrets/postgres_user
-  postgres_password:
-    file: ./secrets/postgres_password
+    postgres_user:
+        file: ./secrets/postgres_user
+    postgres_password:
+        file: ./secrets/postgres_password
 
 volumes:
-  postgres_data:
+    postgres_data:
