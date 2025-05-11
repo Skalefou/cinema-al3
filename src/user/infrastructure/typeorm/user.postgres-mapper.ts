@@ -19,4 +19,6 @@ export class UserPostgresMapper {
         entity.roles = domain.roles;
         return entity;
     }
+
+
 }

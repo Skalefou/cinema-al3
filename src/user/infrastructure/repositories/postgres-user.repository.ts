@@ -13,6 +13,12 @@ export class UserPostgresRepository implements UserRepository {
         private readonly userRepository: Repository<UserPostgresEntity>,
     ) {}
 
+    async findByEmail(email: string): Promise<User | null> {
+        return this.userRepository.findOne({
+            where: { email },
+        }).then(userPostgres => userPostgres ? UserPostgresMapper.toDomain(userPostgres) : null);
+    }
+
     async register(user: User): Promise<User> {
         const userPostgres = UserPostgresMapper.toPostgresEntity(user);
         const saved = await this.userRepository.save(userPostgres);

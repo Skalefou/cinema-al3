@@ -7,6 +7,7 @@ import { BcryptPasswordHasher } from './infrastructure/services/bcrypt-password-
 import { UserPostgresRepository } from './infrastructure/repositories/postgres-user.repository';
 import { UserPostgresEntity } from './infrastructure/typeorm/user.postgres-entity';
 import { JwtGeneratorService } from './infrastructure/services/token-generator.service';
+import { LoginUserUsecase } from './application/use-cases/login-user.usecase';
 
 @Module({
     imports: [
@@ -31,6 +32,7 @@ import { JwtGeneratorService } from './infrastructure/services/token-generator.s
             useClass: JwtGeneratorService,
         },
         RegisterUserUsecase,
+        LoginUserUsecase
     ],
 })
 export class UserModule {}
