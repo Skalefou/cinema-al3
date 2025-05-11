@@ -1,16 +1,20 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { AddMovieUseCase } from '../../application/use-cases/add-movie.usecase';
 import { AddMovieDTO } from 'src/movie/presentation/dtos/add-movie.dto';
 import { Movie } from '../../domain/entities/movie.entity';
 import { MovieMapper } from '../mappers/movie.mapper';
 import { GetAllMovieUseCase } from '../../application/use-cases/get-all-movie.usecase';
 import { Roles } from '../../../auth/decorators/roles.decorator';
+import { DeleteMovieUseCase } from '../../application/use-cases/delete-movie.usecase';
+import { PutMovieUseCase } from '../../application/use-cases/update-movie.usecase';
 
 @Controller('movie')
 export class MovieController {
     constructor(
         private readonly addMovieUseCase: AddMovieUseCase,
         private readonly getAllMovieUseCase: GetAllMovieUseCase,
+        private readonly putMovieUseCase: PutMovieUseCase,
+        private readonly deleteMovieUseCase: DeleteMovieUseCase,
     ) {}
 
     @Post()
@@ -32,6 +36,12 @@ export class MovieController {
         @Body() movieDTO: AddMovieDTO
     ): Promise<Movie> {
         const movie = new Movie(movieDTO.title, movieDTO.director, movieDTO.releaseDate, movieDTO.duration, id);
-        return this.addMovieUseCase.execute(movie);
+        return this.putMovieUseCase.execute(movie);
+    }
+
+    @Delete(":id")
+    @Roles("ADMIN")
+    async deleteMovie(@Param('id') id: string): Promise<void> {
+        await this.deleteMovieUseCase.execute(id);
     }
 }

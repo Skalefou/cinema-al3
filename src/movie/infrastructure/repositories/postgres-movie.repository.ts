@@ -34,4 +34,12 @@ export class PostgresMovieRepository implements MovieRepository {
         const movies = await this.movieRepository.find();
         return movies.map((movie) => MovieMapper.toDomain(movie));
     }
+
+    async deleteById(id: string): Promise<void> {
+        const movie = await this.movieRepository.findOne({ where: { id } });
+        if (!movie) {
+            throw new Error(`Film ${id} introuvable`);
+        }
+        await this.movieRepository.delete(id);
+    }
 }

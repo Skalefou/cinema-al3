@@ -6,6 +6,7 @@ import { AddMovieUseCase } from './application/use-cases/add-movie.usecase';
 import { MoviePostgresEntity } from './infrastructure/typeorm/movie.postgres-entity';
 import { GetAllMovieUseCase } from './application/use-cases/get-all-movie.usecase';
 import { PutMovieUseCase } from './application/use-cases/update-movie.usecase';
+import { DeleteMovieUseCase } from './application/use-cases/delete-movie.usecase';
 
 @Module({
     imports: [TypeOrmModule.forFeature([MoviePostgresEntity])],
@@ -18,6 +19,7 @@ import { PutMovieUseCase } from './application/use-cases/update-movie.usecase';
         AddMovieUseCase,
         GetAllMovieUseCase,
         PutMovieUseCase,
+        DeleteMovieUseCase
     ]
 })
 export class MovieModule {}
