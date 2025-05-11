@@ -1,5 +1,5 @@
 export const PASSWORD_HASHER = "PASSWORD_HASHER";
 
-export interface PasswordHasher {
+export interface PasswordHasherService {
     hash(password: string): Promise<string>;
 }

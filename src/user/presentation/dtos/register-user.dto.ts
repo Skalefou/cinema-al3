@@ -12,3 +12,5 @@ export class RegisterUserDTO {
     })
     password: string;
 }
+
+export type LoginUserDTO = RegisterUserDTO;

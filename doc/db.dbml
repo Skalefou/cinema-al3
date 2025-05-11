@@ -27,6 +27,7 @@ TABLE user {
   id UUID [primary key]
   email TEXT
   password VARCHAR(64)
+  roles TEXT[]
 }
 
 

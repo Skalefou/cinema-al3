@@ -6,6 +6,7 @@ export class UserPostgresMapper {
         return new User(
             user.email,
             user.password,
+            user.roles,
             user.id,
         )
     }
@@ -15,6 +16,7 @@ export class UserPostgresMapper {
         entity.id = domain.id;
         entity.email = domain.email;
         entity.password = domain.password;
+        entity.roles = domain.roles;
         return entity;
     }
 }

@@ -12,7 +12,10 @@ export class UserController {
 
     @Post("register")
     async registerUser(@Body() userDTO: RegisterUserDTO): Promise<ResponseRegisterUserDTO> {
-        const user = await this.registerUserUseCase.execute(UserPresentationMapper.registerUserDtoToDomain(userDTO));
-        return UserPresentationMapper.toResponseRegister(user);
+        const {registeredUser, accessToken, refreshToken} = await this.registerUserUseCase.execute(UserPresentationMapper.registerUserDtoToDomain(userDTO));
+        return UserPresentationMapper.toResponseRegister(registeredUser, accessToken, refreshToken);
     }
+
+    @Post("login")
+
 }

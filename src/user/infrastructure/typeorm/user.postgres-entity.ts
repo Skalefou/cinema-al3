@@ -10,6 +10,9 @@ export class UserPostgresEntity {
     @Column({ type: 'varchar', length: 64 })
     password: string;
 
+    @Column({ type: 'text', array: true, default: ['USER'] })
+    roles: string[];
+
     @PrimaryGeneratedColumn('uuid')
     id?: string;
 }
