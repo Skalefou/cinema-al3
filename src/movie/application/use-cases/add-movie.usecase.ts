@@ -4,7 +4,7 @@ import {
     MovieRepository,
 } from '../../domain/repositories/movie.repository';
 import { Movie } from '../../domain/entities/movie.entity';
-import { MovieDTO } from '../../shared/dtos/movie.dto';
+import { AddMovieDTO } from '../../presentation/dtos/add-movie.dto';
 
 @Injectable()
 export class AddMovieUseCase {
@@ -13,13 +13,7 @@ export class AddMovieUseCase {
         private readonly movieRepository: MovieRepository,
     ) {}
 
-    async execute(movie: MovieDTO): Promise<Movie> {
-        const newMovie = new Movie();
-        newMovie.name = movie.name;
-        newMovie.release_date = movie.release_date;
-        newMovie.director = movie.director;
-        newMovie.duration = movie.duration;
-
-        return this.movieRepository.add(newMovie);
+    async execute(movie: Movie): Promise<Movie> {
+        return this.movieRepository.add(movie);
     }
 }

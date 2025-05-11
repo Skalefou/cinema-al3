@@ -9,7 +9,7 @@ Table movie_theater {
 
 TABLE movie {
   id UUID [primary key]
-  name VARCHAR(64)
+  title VARCHAR(64)
   director VARCHAR(64)
   release_date date
   duration INTERVAL
