@@ -4,6 +4,7 @@ import { MovieController } from './presentation/controllers/movie.controller';
 import { PostgresMovieRepository } from './infrastructure/repositories/postgres-movie.repository';
 import { AddMovieUseCase } from './application/use-cases/add-movie.usecase';
 import { MoviePostgresEntity } from './infrastructure/typeorm/movie.postgres-entity';
+import { GetAllMovieUseCase } from './application/use-cases/get-all-movie.usecase';
 
 @Module({
     imports: [TypeOrmModule.forFeature([MoviePostgresEntity])],
@@ -14,6 +15,7 @@ import { MoviePostgresEntity } from './infrastructure/typeorm/movie.postgres-ent
             useClass: PostgresMovieRepository,
         },
         AddMovieUseCase,
+        GetAllMovieUseCase,
     ]
 })
 export class MovieModule {}

@@ -15,12 +15,18 @@ TABLE movie {
   duration INTERVAL
 }
 
-Table movie_screening{
+Table movie_screening {
   id UUID [primary key]
   start_screening TIMESTAMPTZ
   end_screening TIMESTAMPTZ
   movie_id UUID
   movie_theater_id UUID
+}
+
+TABLE user {
+  id UUID [primary key]
+  email TEXT
+  password VARCHAR(64)
 }
 
 

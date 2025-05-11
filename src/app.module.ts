@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MovieModule } from './movie/movie.module';
+import { UserModule } from './user/user.module';
 
 @Module({
     imports: [
@@ -23,6 +24,7 @@ import { MovieModule } from './movie/movie.module';
             }),
         }),
         MovieModule,
+        UserModule,
     ],
 })
 export class AppModule {}

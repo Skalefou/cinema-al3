@@ -16,4 +16,9 @@ export class PostgresMovieRepository implements MovieRepository {
         const saved = await this.movieRepository.save(moviePostgres);
         return MovieMapper.toDomain(saved);
     }
+
+    async getAll(): Promise<Movie[]> {
+        const movies = await this.movieRepository.find();
+        return movies.map((movie) => MovieMapper.toDomain(movie));
+    }
 }
