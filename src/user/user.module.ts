@@ -8,6 +8,7 @@ import { UserPostgresRepository } from './infrastructure/repositories/postgres-u
 import { UserPostgresEntity } from './infrastructure/typeorm/user.postgres-entity';
 import { JwtGeneratorService } from './infrastructure/services/jwt-generator.service';
 import { LoginUserUsecase } from './application/use-cases/login-user.usecase';
+import { RefreshTokenUsecase } from './application/use-cases/refresh-token.usecase';
 
 @Module({
     imports: [
@@ -32,7 +33,8 @@ import { LoginUserUsecase } from './application/use-cases/login-user.usecase';
             useClass: JwtGeneratorService,
         },
         RegisterUserUsecase,
-        LoginUserUsecase
+        LoginUserUsecase,
+        RefreshTokenUsecase
     ],
 })
 export class UserModule {}
