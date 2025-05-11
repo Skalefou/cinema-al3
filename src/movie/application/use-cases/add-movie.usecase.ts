@@ -4,7 +4,6 @@ import {
     MovieRepository,
 } from '../../domain/repositories/movie.repository';
 import { Movie } from '../../domain/entities/movie.entity';
-import { AddMovieDTO } from '../../presentation/dtos/add-movie.dto';
 
 @Injectable()
 export class AddMovieUseCase {

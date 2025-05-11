@@ -11,6 +11,19 @@ export class PostgresMovieRepository implements MovieRepository {
         private readonly movieRepository: Repository<MoviePostgresEntity>,
     ) {}
 
+    async update(movie: Movie): Promise<Movie> {
+      const existing = await this.movieRepository.findOne({ where: { id: movie.id } });
+
+      if (!existing) {
+        throw new Error(`Film ${movie.id} introuvable`);
+      }
+
+      const updatedEntity = MovieMapper.toPostgresEntity(movie);
+      const saved = await this.movieRepository.save(updatedEntity);
+
+      return MovieMapper.toDomain(saved);
+    }
+
     async add(movie: Movie): Promise<Movie> {
         const moviePostgres = MovieMapper.toPostgresEntity(movie);
         const saved = await this.movieRepository.save(moviePostgres);
