@@ -6,7 +6,7 @@ import { RegisterUserUsecase } from './application/use-cases/register-user.useca
 import { BcryptPasswordHasher } from './infrastructure/services/bcrypt-password-hasher.service';
 import { UserPostgresRepository } from './infrastructure/repositories/postgres-user.repository';
 import { UserPostgresEntity } from './infrastructure/typeorm/user.postgres-entity';
-import { JwtGeneratorService } from './infrastructure/services/token-generator.service';
+import { JwtGeneratorService } from './infrastructure/services/jwt-generator.service';
 import { LoginUserUsecase } from './application/use-cases/login-user.usecase';
 
 @Module({

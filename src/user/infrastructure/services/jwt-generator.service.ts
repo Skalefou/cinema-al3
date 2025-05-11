@@ -13,9 +13,10 @@ export class JwtGeneratorService implements TokenGeneratorService {
           email: payload.email,
           roles: payload.roles,
       };
-    return this.jwtService.signAsync(pl, {
-      expiresIn: '15m',
-    });
+      return this.jwtService.signAsync(pl, {
+          expiresIn: '15m',
+          secret: process.env.JWT_SECRET,
+      });
   }
 
   async generateRefreshToken(payload: TokenPayload): Promise<string> {
@@ -25,7 +26,8 @@ export class JwtGeneratorService implements TokenGeneratorService {
           roles: payload.roles,
       };
       return this.jwtService.signAsync(pl, {
-      expiresIn: '30d',
+        expiresIn: '30d',
+        secret: process.env.JWT_SECRET,
     });
   }
 }

@@ -23,7 +23,7 @@ Table movie_screening {
   movie_theater_id UUID
 }
 
-TABLE user {
+TABLE users {
   id UUID [primary key]
   email TEXT
   password VARCHAR(64)

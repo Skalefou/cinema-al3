@@ -2,7 +2,7 @@ import { Column, Entity, PrimaryGeneratedColumn, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { MoviePostgresEntity } from '../../../movie/infrastructure/typeorm/movie.postgres-entity';
 
-@Entity('user')
+@Entity('users')
 export class UserPostgresEntity {
     @Column({ type: 'text', unique: true })
     email: string;
