@@ -34,8 +34,6 @@ export class RolesGuard implements CanActivate {
     const request = context.switchToHttp().getRequest<RequestWithUser>();
     const user = request.user;
 
-    console.log('Utilisateur dans la requête:', user);
-
     if (!user?.roles || !Array.isArray(user.roles)) {
       throw new ForbiddenException('Rôle manquant dans le token.');
     }

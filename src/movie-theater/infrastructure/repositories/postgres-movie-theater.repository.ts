@@ -11,6 +11,16 @@ export class PostgresMovieTheaterRepository implements MovieTheaterRepository {
         private readonly movieRepository: Repository<MovieTheaterPostgresEntity>,
     ) {}
 
+    async findById(id: string): Promise<MovieTheater | null> {
+        const entity = await this.movieRepository.findOne({ where: { id } });
+
+        if (!entity) {
+            throw new Error(`Salle de cinéma ${id} introuvable`);
+        }
+
+        return MovieTheaterPostgresMapper.toDomain(entity);
+    }
+
     async delete(id: string): Promise<void> {
         await this.movieRepository.delete(id);
     }

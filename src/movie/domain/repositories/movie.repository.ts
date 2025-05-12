@@ -7,4 +7,5 @@ export interface MovieRepository {
     update(movie: Movie): Promise<Movie>;
     getAll(): Promise<Movie[]>;
     deleteById(id: string): Promise<void>;
+    findById(id: string): Promise<Movie | null>;
 }

@@ -34,7 +34,7 @@ import { RefreshTokenUsecase } from './application/use-cases/refresh-token.useca
         },
         RegisterUserUsecase,
         LoginUserUsecase,
-        RefreshTokenUsecase
+        RefreshTokenUsecase,
     ],
 })
 export class UserModule {}

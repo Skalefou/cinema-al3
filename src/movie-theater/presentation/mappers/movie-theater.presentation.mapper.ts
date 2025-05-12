@@ -9,6 +9,7 @@ export class MovieTheaterPresentationMapper {
             createMovieTheaterDTO.images,
             createMovieTheaterDTO.capacity,
             createMovieTheaterDTO.disabledAccess,
+            createMovieTheaterDTO.maintenance,
         );
     }
 }

@@ -7,4 +7,5 @@ export interface MovieTheaterRepository {
     create(movieTheater: MovieTheater): Promise<MovieTheater>;
     update(movieTheater: MovieTheater): Promise<MovieTheater>;
     delete(id: string): Promise<void>;
+    findById(id: string): Promise<MovieTheater | null>;
 }

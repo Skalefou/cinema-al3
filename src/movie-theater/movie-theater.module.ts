@@ -6,6 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { MovieTheaterPostgresEntity } from './infrastructure/typeorm/movie-theater.postgres-entity';
 import { UpdateMovieTheaterUseCase } from './application/use-cases/update-movie-theater.usecase';
 import { DeleteMovieTheaterUsecase } from './application/use-cases/delete-movie-theater.usecase';
+import { MOVIE_THEATER_REPOSITORY } from './domain/repositories/movie-theater.repository';
 
 
 @Module({
@@ -13,12 +14,13 @@ import { DeleteMovieTheaterUsecase } from './application/use-cases/delete-movie-
     controllers: [MovieTheaterController],
     providers: [
         {
-            provide: 'MOVIE_THEATER_REPOSITORY',
+            provide: MOVIE_THEATER_REPOSITORY,
             useClass: PostgresMovieTheaterRepository,
         },
         AddMovieTheaterUseCase,
         UpdateMovieTheaterUseCase,
         DeleteMovieTheaterUsecase,
-    ]
+    ],
+    exports: [MOVIE_THEATER_REPOSITORY],
 })
 export class MovieTheaterModule {}

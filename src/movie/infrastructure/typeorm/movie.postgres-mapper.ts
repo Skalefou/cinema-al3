@@ -1,7 +1,7 @@
 import { Movie } from '../../domain/entities/movie.entity';
 import { MoviePostgresEntity } from './movie.postgres-entity';
 
-export class MovieMapper {
+export class MoviePostgresMapper {
     static toDomain(entity: MoviePostgresEntity): Movie {
         return new Movie(
             entity.title,

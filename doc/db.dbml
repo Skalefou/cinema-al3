@@ -20,6 +20,7 @@ Table movie_screening {
   id UUID [primary key]
   start_screening TIMESTAMPTZ
   end_screening TIMESTAMPTZ
+  available_seats SMALLINT
   movie_id UUID
   movie_theater_id UUID
 }

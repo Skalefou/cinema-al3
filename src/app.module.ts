@@ -5,6 +5,7 @@ import { MovieModule } from './movie/movie.module';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { MovieTheaterModule } from './movie-theater/movie-theater.module';
+import { MovieScreeningModule } from './movie-screening/movie-screening.module';
 
 @Module({
     imports: [
@@ -28,7 +29,8 @@ import { MovieTheaterModule } from './movie-theater/movie-theater.module';
         AuthModule,
         MovieModule,
         UserModule,
-        MovieTheaterModule
+        MovieTheaterModule,
+        MovieScreeningModule
     ],
 })
 export class AppModule {}

@@ -3,7 +3,7 @@ import { Movie } from '../../domain/entities/movie.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { MoviePostgresEntity } from '../typeorm/movie.postgres-entity';
-import { MovieMapper } from '../typeorm/movie.mapper';
+import { MoviePostgresMapper } from '../typeorm/movie.postgres-mapper';
 
 export class PostgresMovieRepository implements MovieRepository {
     constructor(
@@ -11,28 +11,42 @@ export class PostgresMovieRepository implements MovieRepository {
         private readonly movieRepository: Repository<MoviePostgresEntity>,
     ) {}
 
+    async findById(id: string): Promise<Movie | null> {
+        const entity = await this.movieRepository.findOne({ where: { id } });
+
+        if (!entity) {
+            throw new Error(`Film ${id} introuvable`);
+        }
+
+        return MoviePostgresMapper.toDomain(entity);
+    }
+
     async update(movie: Movie): Promise<Movie> {
-      const existing = await this.movieRepository.findOne({ where: { id: movie.id } });
+        const existing = await this.movieRepository.findOne({
+            where: { id: movie.id },
+        });
 
-      if (!existing) {
-        throw new Error(`Film ${movie.id} introuvable`);
-      }
+        if (!existing) {
+            throw new Error(`Film ${movie.id} introuvable`);
+        }
 
-      const updatedEntity = MovieMapper.toPostgresEntity(movie);
-      const saved = await this.movieRepository.save(updatedEntity);
+        const updatedEntity = MoviePostgresMapper.toPostgresEntity(movie);
+        const saved = await this.movieRepository.save(updatedEntity);
 
-      return MovieMapper.toDomain(saved);
+        return MoviePostgresMapper.toDomain(saved);
     }
 
     async add(movie: Movie): Promise<Movie> {
-        const moviePostgres = MovieMapper.toPostgresEntity(movie);
+        const moviePostgres = MoviePostgresMapper.toPostgresEntity(movie);
         const saved = await this.movieRepository.save(moviePostgres);
-        return MovieMapper.toDomain(saved);
+        return MoviePostgresMapper.toDomain(saved);
     }
 
     async getAll(): Promise<Movie[]> {
         const movies = await this.movieRepository.find();
-        return movies.map((movie) => MovieMapper.toDomain(movie));
+        const r = MoviePostgresMapper.toDomain(movies[0]);
+        console.log(r.duration);
+        return movies.map((movie) => MoviePostgresMapper.toDomain(movie));
     }
 
     async deleteById(id: string): Promise<void> {
