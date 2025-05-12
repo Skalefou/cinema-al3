@@ -5,6 +5,7 @@ import { PostgresMovieTheaterRepository } from './infrastructure/repositories/po
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { MovieTheaterPostgresEntity } from './infrastructure/typeorm/movie-theater.postgres-entity';
 import { UpdateMovieTheaterUseCase } from './application/use-cases/update-movie-theater.usecase';
+import { DeleteMovieTheaterUsecase } from './application/use-cases/delete-movie-theater.usecase';
 
 
 @Module({
@@ -17,6 +18,7 @@ import { UpdateMovieTheaterUseCase } from './application/use-cases/update-movie-
         },
         AddMovieTheaterUseCase,
         UpdateMovieTheaterUseCase,
+        DeleteMovieTheaterUsecase,
     ]
 })
 export class MovieTheaterModule {}

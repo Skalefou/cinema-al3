@@ -11,8 +11,13 @@ export class PostgresMovieTheaterRepository implements MovieTheaterRepository {
         private readonly movieRepository: Repository<MovieTheaterPostgresEntity>,
     ) {}
 
+    async delete(id: string): Promise<void> {
+        await this.movieRepository.delete(id);
+    }
+
     async update(movieTheater: MovieTheater): Promise<MovieTheater> {
-        const entity = MovieTheaterPostgresMapper.toPostgresEntity(movieTheater);
+        const entity =
+            MovieTheaterPostgresMapper.toPostgresEntity(movieTheater);
         const saved = await this.movieRepository.save(entity);
         return MovieTheaterPostgresMapper.toDomain(saved);
     }
