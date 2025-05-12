@@ -8,3 +8,4 @@ export class MovieTheater {
        public id?: string,
     ) {}
 }
+

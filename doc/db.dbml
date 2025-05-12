@@ -2,7 +2,7 @@ Table movie_theater {
   id UUID [primary key]
   name VARCHAR(64)
   description text
-  type VARCHAR(16)
+  images TEXT[]
   capacity SMALLINT
   disabled_access BOOLEAN
 }

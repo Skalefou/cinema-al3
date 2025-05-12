@@ -1,67 +1,38 @@
-import { Controller, Post } from '@nestjs/common';
+import { Body, Controller, Param, Post, Put } from '@nestjs/common';
 import { Roles } from '../../../auth/decorators/roles.decorator';
 import { AddMovieTheaterUseCase } from '../../application/use-cases/add-movie-theater.usecase';
+import { CreateMovieTheaterDTO } from '../dtos/create-movie-theater.dto';
+import { MovieTheater } from '../../domain/entities/movie.theater.entity';
+import { MovieTheaterPresentationMapper } from '../mappers/movie-theater.presentation.mapper';
+import { UpdateMovieTheaterUseCase } from '../../application/use-cases/update-movie-theater.usecase';
 
 @Controller('movie-theater')
 export class MovieTheaterController {
     constructor(
         private readonly addMovieTheaterUseCase: AddMovieTheaterUseCase,
+        private readonly updateMovieTheaterUseCase: UpdateMovieTheaterUseCase,
     ) {}
 
     @Post("create")
     @Roles("ADMIN")
-    async createMovieTheater() {
-
-    }
-}
-
-/*import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
-import { AddMovieUseCase } from '../../application/use-cases/add-movie.usecase';
-import { AddMovieDTO } from 'src/movie/presentation/dtos/add-movie.dto';
-import { Movie } from '../../domain/entities/movie.entity';
-import { MovieMapper } from '../mappers/movie.mapper';
-import { GetAllMovieUseCase } from '../../application/use-cases/get-all-movie.usecase';
-import { Roles } from '../../../auth/decorators/roles.decorator';
-import { DeleteMovieUseCase } from '../../application/use-cases/delete-movie.usecase';
-import { PutMovieUseCase } from '../../application/use-cases/update-movie.usecase';
-
-@Controller('movie')
-export class MovieController {
-    constructor(
-        private readonly addMovieUseCase: AddMovieUseCase,
-        private readonly getAllMovieUseCase: GetAllMovieUseCase,
-        private readonly putMovieUseCase: PutMovieUseCase,
-        private readonly deleteMovieUseCase: DeleteMovieUseCase,
-    ) {}
-
-    @Post()
-    @Roles('ADMIN')
-    async addMovie(@Body() movieDTO: AddMovieDTO): Promise<Movie> {
-        return this.addMovieUseCase.execute(MovieMapper.fromAddMovieDtoToDomain(movieDTO));
-    }
-
-    @Get("all")
-    @Roles("USER")
-    async getAllMovies(): Promise<Movie[]> {
-        return this.getAllMovieUseCase.execute();
+    async createMovieTheater(@Body () movieTheaterDTO: CreateMovieTheaterDTO): Promise<MovieTheater> {
+        return this.addMovieTheaterUseCase.execute(MovieTheaterPresentationMapper.createMovieTheaterDTOToDomain(movieTheaterDTO));
     }
 
     @Put(":id")
     @Roles("ADMIN")
-    async updateMovie(
+    async updateMovieTheater(
         @Param('id') id: string,
-        @Body() movieDTO: AddMovieDTO
-    ): Promise<Movie> {
-        const movie = new Movie(movieDTO.title, movieDTO.director, movieDTO.releaseDate, movieDTO.duration, id);
-        return this.putMovieUseCase.execute(movie);
-    }
-
-    @Delete(":id")
-    @Roles("ADMIN")
-    async deleteMovie(@Param('id') id: string): Promise<void> {
-        await this.deleteMovieUseCase.execute(id);
+        @Body () movieTheaterDTO: CreateMovieTheaterDTO
+    ): Promise<MovieTheater> {
+        const movieTheater = new MovieTheater(
+            movieTheaterDTO.name,
+            movieTheaterDTO.description,
+            movieTheaterDTO.images,
+            movieTheaterDTO.capacity,
+            movieTheaterDTO.disabledAccess,
+            id,
+        );
+        return this.updateMovieTheaterUseCase.execute(movieTheater);
     }
 }
-
-
- */
