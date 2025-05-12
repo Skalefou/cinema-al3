@@ -12,6 +12,7 @@ export class MovieTheaterPostgresMapper {
             movieT.images,
             movieT.capacity,
             movieT.disabled_access,
+            movieT.maintenance,
             movieT.id,
         );
     }
@@ -24,6 +25,7 @@ export class MovieTheaterPostgresMapper {
         entity.images = domain.images;
         entity.capacity = domain.capacity;
         entity.disabled_access = domain.disabledAccess;
+        entity.maintenance = domain.maintenance;
         return entity;
     }
 

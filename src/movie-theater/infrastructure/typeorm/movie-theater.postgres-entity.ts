@@ -17,6 +17,9 @@ export class MovieTheaterPostgresEntity {
     @Column({ type: 'boolean', default: false })
     disabled_access: boolean;
 
+    @Column({ type: 'boolean', default: false })
+    maintenance: boolean;
+
     @PrimaryGeneratedColumn('uuid')
     id?: string;
 }

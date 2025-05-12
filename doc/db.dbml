@@ -5,6 +5,7 @@ Table movie_theater {
   images TEXT[]
   capacity SMALLINT
   disabled_access BOOLEAN
+  maintenance BOOLEAN
 }
 
 TABLE movie {

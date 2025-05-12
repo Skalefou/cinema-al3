@@ -33,6 +33,7 @@ export class MovieTheaterController {
             movieTheaterDTO.images,
             movieTheaterDTO.capacity,
             movieTheaterDTO.disabledAccess,
+            movieTheaterDTO.maintenance,
             id,
         );
         return this.updateMovieTheaterUseCase.execute(movieTheater);

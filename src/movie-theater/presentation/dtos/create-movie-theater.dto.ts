@@ -26,6 +26,10 @@ export class CreateMovieTheaterDTO {
     @Max(30, { message: 'Le champ "capacity" doit être inférieur ou égal à 30' })
     capacity: number;
 
+    @IsNotEmpty({ message: 'Le champ "maintenance" est obligatoire' })
+    @IsBoolean({ message: 'Le champ "maintenance" doit être un booléen' })
+    maintenance: boolean;
+
     @IsNotEmpty({ message: 'Le champ "disabledAccess" est obligatoire' })
     @IsBoolean({ message: 'Le champ "disabledAccess" doit être un booléen' })
     disabledAccess: boolean;

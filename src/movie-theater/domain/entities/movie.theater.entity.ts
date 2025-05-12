@@ -5,6 +5,7 @@ export class MovieTheater {
        public images: string[],
        public capacity: number,
        public disabledAccess: boolean,
+       public maintenance: boolean,
        public id?: string,
     ) {}
 }
